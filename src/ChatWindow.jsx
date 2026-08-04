@@ -21,14 +21,15 @@ function ChatWindow(){
                threadId: currentThreadId
             })
          };
+
          
          try{
+            // console.log(import.meta.env.VITE_API_URL);
             // const response = await fetch("http://localhost:8080/api/chat", options);
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, options);
             const res = await response.json();
             // console.log(res);
             setReply(res.reply);
-            // console.log(response);
 
          }catch(err){
             console.log(err);
