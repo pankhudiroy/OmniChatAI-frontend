@@ -11,6 +11,7 @@ function ChatWindow(){
 
     const getReply = async ()=>{
          setLoading(true);
+         console.log(currentThreadId);
          const options = {
             method: "POST",
             headers: {
@@ -18,13 +19,12 @@ function ChatWindow(){
             },
             body: JSON.stringify({
                message: prompt,
-               threadId: currentThreadId
+               threadId: currentThreadId,
             })
          };
-
+         // console.log(prompt);
          
          try{
-            // console.log(import.meta.env.VITE_API_URL);
             // const response = await fetch("http://localhost:8080/api/chat", options);
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, options);
             const res = await response.json();
