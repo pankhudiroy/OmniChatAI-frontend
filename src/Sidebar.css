@@ -1,0 +1,223 @@
+.sidebar{
+    /* background-color: #171717; */
+    position: fixed;
+    background-color: #0d0d0d;
+    color: #b4b4b4;
+    height: 100vh;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    z-index: 1000;
+    /* display: none; */
+}
+
+button{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 10px;
+    border: solid 0.5px rgba(255, 255, 255, 0.5);
+    /* position: sticky;
+    top: 20px; */
+    cursor: pointer;
+}
+button:hover{
+    background-color: #212121;
+    /* border: 2px solid black; */
+}
+
+.logo{
+    height: 25px;
+    width: 25px;
+    background-color: #fff;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.history{
+    flex: 1;    
+    margin: 10px;
+    padding: 10px;
+    /* height: 100%; */
+    overflow-y: auto;
+    scrollbar-width: thin;          /* Firefox */
+    scrollbar-color: #444 #000; 
+    /* background-color: blue; */
+}
+
+.history h4{
+    color: aliceblue;
+    margin-bottom: 2rem;
+}
+
+.history li{
+    height: 7px;
+    list-style-type: none;
+    cursor: pointer;
+    padding: 10px 18px 19px 10px;
+    /* padding: 4px 13px 13px 5px; */
+    margin-bottom: 1rem;
+    font-size: 15px;
+    position: relative;
+    /* background-color: red; */
+}
+
+.history li:hover{
+    background-color: #212121;
+    border-radius: 10px;
+}
+
+.thread-title {
+  /* height: 5px; */
+  display: inline-block;
+  max-width: 210px;       
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  /* background-color: blue; */
+}
+
+.sign{
+    margin: 10px;
+    padding: 10px;
+    font-size: 14px;
+    text-align: center;
+    font-size: 15px;
+    border-top: solid 0.25px rgba(255, 255, 255, 0.5);
+}
+
+.fa-ellipsis{
+    opacity: 0;
+    position: absolute;
+    right: 8px;
+    top: 12px;
+}
+
+.history li:hover .fa-ellipsis{
+    opacity: 1;
+}
+
+
+.options {
+  position: absolute;
+  /* top: 100%; */
+  right: -7rem;
+  right: 0;
+  background: #2a2a2a;
+  border-radius: 6px;
+  padding: 12px;
+  width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10000;
+}
+
+.fa-trash-can, .fa-pen-to-square {
+  display: flex;
+  width: 90%;
+  height: 90%;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 3px;
+  gap: 0.8rem;
+}
+
+.fa-trash-can{
+    color: rgb(200, 44, 44);
+}
+
+.fa-trash-can:hover{
+    background-color: rgba(230, 79, 79, 0.2);
+}
+
+.fa-pen-to-square:hover{
+    background-color: rgba(5, 0, 0, 0.3);
+}
+
+.highlighted{
+    background-color: rgba(180, 180, 180, 0.05);
+    border-radius: 10px;
+}
+
+
+.renameInput {
+  /* width: 100%;          
+  height: 100%; */
+  /* padding: 8px 12px; */
+  /* padding: 4px; */
+  
+  font-size: 15px;
+  border: none;
+  border-radius: 6px;
+  background-color: #212121;
+  /* background-color: transparent; */
+  color: #fff;               
+  outline: none;               
+}
+
+.renameInput:focus {
+  /* background-color: #212121; */
+  /* box-shadow: 0 0 0 2px rgba(255,255,255,0.2);  */
+  background-color: transparent
+}
+
+
+
+/* responsiveness */
+.mobileToggle{
+    display:none;
+}
+
+.sidebar{
+    transition: all .3s ease;
+}
+
+/* .sidebar.collapsed{
+    width:80px;
+} */
+
+/* .sidebar.collapsed .thread-title,
+.sidebar.collapsed h4,
+.sidebar.collapsed .sign,
+.sidebar.collapsed span{
+    display:none;
+} */
+
+/* @media (max-width:768px) */
+@media (max-width:1044px){
+    .mobileToggle{
+        display:flex;
+    }
+
+    .sidebar{
+        transform:translateX(-100%);
+        /* transform:translateX(100%); */
+        width:280px;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+        /* transform: translateX(100%); */
+    }
+
+    /* .sidebar.collapsed{
+        transform:translateX(-100%);
+    } */
+    
+    .thread-title {
+        /* height: 5px; */
+        display: inline-block;
+        max-width: 180px;       
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+        /* background-color: blue; */
+    }
+}
