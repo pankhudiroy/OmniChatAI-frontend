@@ -36,7 +36,7 @@ function Chat(){
 
     return(
         <>
-            {newChat && reply === null && <h1>Start a New Chat!</h1>}
+            {newChat && reply === null && <h1 className="startNewChath1">Start a New Chat!</h1>}
             <div className="chats">
               {/* dynamic data */}
               {
