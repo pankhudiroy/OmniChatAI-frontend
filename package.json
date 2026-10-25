@@ -10,9 +10,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ejs": "^7.0.2",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-markdown": "^10.1.0",
+    "react-router": "^8.4.0",
     "react-spinners": "^0.17.0",
     "rehype-highlight": "^7.0.2",
     "uuid": "^14.0.1"

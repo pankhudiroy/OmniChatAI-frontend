@@ -9,7 +9,8 @@ import "highlight.js/styles/github-dark.css";
 
 
 function Chat(){
-    const {newChat, prevChats, reply, prompt} = useContext(MyContext);
+    // const {newChat, prevChats, reply, prompt, isLoggedIn, setIsLoggedIn} = useContext(MyContext);
+    const { newChat, prevChats, reply, isLoggedIn, username } = useContext(MyContext);
     const [latestReply, setLatestReply] = useState(null);
 
     useEffect(() =>{
@@ -36,7 +37,11 @@ function Chat(){
 
     return(
         <>
-            {newChat && reply === null && <h1 className="startNewChath1">Start a New Chat!</h1>}
+            {newChat && reply === null && (
+                <h1 className="startNewChath1">
+                    {isLoggedIn && username ? `Nice to see you, ${username}. What's new?`: "Start a New Chat!"}
+                </h1>
+            )}
             <div className="chats">
               {/* dynamic data */}
               {
@@ -62,17 +67,6 @@ function Chat(){
                   </>
                 )
               }
-
-              {/* static data */}
-              {/* <div className="userDiv">
-                 <p className="userMsg">
-                    User Msg hjikkhgfdssddrftyuuioppplmmbvcxsddffjjkkoopppplkmbvxssewwwwwmmkllopshvsvjsoxcncbcbcvcvghdueiosowsksksmmnbxx 
-                 </p>
-              </div>
-
-              <div className="gptDiv">
-                 <p className="gptMsg">GPT Msg</p>
-              </div> */}
             </div>
         </>
     )

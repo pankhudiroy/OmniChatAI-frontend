@@ -14,8 +14,14 @@ function Sidebar(){
 
     const getAllThreads = async () =>{
         try{
-        //   const response = await fetch("http://localhost:8080/api/thread");
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread`);
+          const response = await fetch(
+                `${import.meta.env.VITE_API_URL}/api/thread`,
+                {
+                    headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }
+          );
           const res = await response.json();
           const filterData = res.map(thread => ({threadId: thread.threadId, title: thread.title}));
         //   console.log(filterData);
@@ -42,8 +48,15 @@ function Sidebar(){
         setcurrentThreadId(newThreadId);
 
         try{
-        //   const response = await fetch(`http://localhost:8080/api/thread/${newThreadId}`);
-          const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread/${newThreadId}`);
+          const response = await fetch(
+            `${import.meta.env.VITE_API_URL}/api/thread/${newThreadId}`,
+            // `http://localhost:8080/api/thread/${newThreadId}`,
+            {
+                headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+                }
+            }
+          );
           const res = await response.json();
           setPrevChats(res);
           setNewChat(false);
@@ -79,9 +92,18 @@ function Sidebar(){
     const deleteThread = async(threadId) =>{
         console.log("delete");
         try{
-           const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread/${threadId}`, {method: "DELETE"});
+        //    const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread/${threadId}`, {method: "DELETE"});
+           const response = await fetch(
+               `${import.meta.env.VITE_API_URL}/api/thread/${threadId}`,
+                {
+                    method: "DELETE",
+                    headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                    }
+                }
+           );
            const res = await response.json();
-           console.log(res);
+        //    console.log(res);
 
            //updated threads re-render
            setAllThreads(prev => prev.filter(thread => thread.threadId !== threadId));
@@ -99,8 +121,9 @@ function Sidebar(){
     const handleRename = async (threadId) => {
         try {
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/thread/${threadId}`, {
+            // const response = await fetch(`http://localhost:8080/api/thread/${threadId}`, {
             method: "PUT",
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json", Authorization: `Bearer ${localStorage.getItem("token")}`},
             body: JSON.stringify({ title: editingTitle }),
             });
             const res = await response.json();
@@ -121,12 +144,7 @@ function Sidebar(){
 
 
     return(
-//         <div
-// className={`sidebar
-//   ${sidebarOpen ? "open" : ""}
-//   ${collapsed ? "collapsed" : ""}`}
-// ></div>
-        // <section className="sidebar">
+//     
         <section className={`sidebar ${sidebarOpen ? "open" : ""}`}>
             {/* New chat button */}
             <button onClick={createNewChat}>
@@ -134,20 +152,13 @@ function Sidebar(){
                 {/* <p>OmniChatAI</p> */}
                 <span><i className="fa-regular fa-pen-to-square">New Chat</i></span>
 
-                {/* <button className="mobileToggle" onClick={() => setCollapsed(!collapsed)}>
-  <i className="fa-solid fa-xmark"></i>
+        
 
-  {!collapsed && <span>Collapse</span>}
-</button> */}
-
-            <i
-  className="fa-solid fa-xmark mobileToggle"
-  onClick={(e) => {
-      e.stopPropagation();
-      setSidebarOpen(false);
-    //   setCollapsed(!collapsed);
-  }}
-></i>
+               <i className="fa-solid fa-xmark mobileToggle" onClick={(e) => {
+                    e.stopPropagation();
+                    setSidebarOpen(false);
+                    }}
+              ></i>
             </button>
 
 
