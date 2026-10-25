@@ -26,8 +26,10 @@ function ChatWindow(){
          const options = {
             method: "POST",
             headers: {
-               "Content-Type" : "application/json",
-               Authorization: `Bearer ${localStorage.getItem("token")}`
+               "Content-Type": "application/json",
+               ...(localStorage.getItem("token") && {
+                  Authorization: `Bearer ${localStorage.getItem("token")}`
+               })
             },
             body: JSON.stringify({
                message: prompt,
@@ -40,6 +42,10 @@ function ChatWindow(){
             // const response = await fetch("http://localhost:8080/api/chat", options);
             const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, options);
             const res = await response.json();
+
+            if (!response.ok) {
+               throw new Error(res.error || "Failed to get a response");
+            }
             // console.log(res);
             setReply(res.reply);
 
@@ -71,6 +77,7 @@ function ChatWindow(){
     }
 
     const handleLogin = () => {
+      localStorage.removeItem("username");
        navigate("/login");
     }
 
