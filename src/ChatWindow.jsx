@@ -27,14 +27,12 @@ function ChatWindow(){
             method: "POST",
             headers: {
                "Content-Type": "application/json",
-               ...(localStorage.getItem("token") && {
-                  Authorization: `Bearer ${localStorage.getItem("token")}`
-               })
+               "Authorization": `Bearer ${localStorage.getItem("token")}`
             },
             body: JSON.stringify({
                message: prompt,
                threadId: currentThreadId,
-            })
+            }),
          };
          // console.log(prompt);
          
@@ -49,10 +47,11 @@ function ChatWindow(){
             // console.log(res);
             setReply(res.reply);
 
-         }catch(err){
-            console.log(err);
+         }catch (err) {
+            console.error("Chat request failed:", err);
+         } finally {
+            setLoading(false);
          }
-         setLoading(false);
     }
 
     //Append new chat in prevChats
@@ -77,7 +76,6 @@ function ChatWindow(){
     }
 
     const handleLogin = () => {
-      localStorage.removeItem("username");
        navigate("/login");
     }
 
