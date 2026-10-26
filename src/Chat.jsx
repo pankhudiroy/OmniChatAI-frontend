@@ -44,15 +44,15 @@ function Chat(){
                           Nice to see you, {username}. What's new?
                       </h1>
                   ) : (
-                      <div className="sampleConversation">
-                          <div className="sampleUser">
-                              <strong>You</strong>
-                              <p>Explain JWT authentication in simple terms.</p>
+                      <div>
+                          <div className="userDiv">
+                              {/* <strong>You</strong> */}
+                              <p className="userMsg">Explain JWT authentication in simple terms.</p>
                           </div>
 
-                          <div className="sampleAssistant">
-                              <strong>OmniChatAI</strong>
-                              <p>
+                          <div className="gptDiv">
+                              {/* <strong>OmniChatAI</strong> */}
+                              <p className="gptMsg">
                                   JWT (JSON Web Token) is like a digital entry pass.
                                   After you log in, the server issues a token that
                                   your app sends with future requests to prove
