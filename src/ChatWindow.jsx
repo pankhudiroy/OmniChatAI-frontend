@@ -22,6 +22,7 @@ function ChatWindow(){
 
     const getReply = async ()=>{
          setLoading(true);
+         // {!isLoggedIn}
          // console.log(currentThreadId);
          const options = {
             method: "POST",
@@ -34,7 +35,6 @@ function ChatWindow(){
                threadId: currentThreadId,
             }),
          };
-         // console.log(prompt);
          
          try{
             // const response = await fetch("http://localhost:8080/api/chat", options);
@@ -148,10 +148,10 @@ function ChatWindow(){
                    >
                   </textarea>
                </div>
-
-               <div id="submit" onClick={getReply} >
-                  <i className="fa-solid fa-circle-arrow-up"></i>
-               </div>
+               {/* {isLoggedIn ? */}
+                  <div id="submit" onClick={isLoggedIn? getReply: handleLogin} >
+                     <i className="fa-solid fa-circle-arrow-up"></i>
+                  </div>
             </div>
             <p className="info">
                OmniChatAI can make mistakes. Check important info.
