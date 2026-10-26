@@ -21,8 +21,13 @@ function ChatWindow(){
     const navigate = useNavigate();
 
     const getReply = async ()=>{
+         if (!isLoggedIn) {
+            navigate("/login");
+            return;
+         }
+         if (!prompt.trim()) return;
+
          setLoading(true);
-         // {!isLoggedIn}
          // console.log(currentThreadId);
          const options = {
             method: "POST",
@@ -85,6 +90,7 @@ function ChatWindow(){
 
     const handleLogout = () => {
          localStorage.removeItem("token");
+         localStorage.removeItem("username");
          setIsLoggedIn(false);
          setAllThreads([]);
 
@@ -149,7 +155,7 @@ function ChatWindow(){
                   </textarea>
                </div>
                {/* {isLoggedIn ? */}
-                  <div id="submit" onClick={isLoggedIn? getReply: handleLogin} >
+                  <div id="submit" onClick={getReply} >
                      <i className="fa-solid fa-circle-arrow-up"></i>
                   </div>
             </div>
