@@ -128,3 +128,9 @@ code{
     color: #888;
     font-size: 12px;
 }
+
+.info{
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    color: #b4b4b4;
+}

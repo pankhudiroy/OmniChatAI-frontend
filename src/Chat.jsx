@@ -4,6 +4,7 @@ import MyContext from "./MyContext.jsx";
 import ReactMarkdown from "react-markdown";
 import rehypeHighlight from "rehype-highlight";
 import "highlight.js/styles/github-dark.css";
+import { Link } from "react-router";
 
 //react-markdown rehype-highlight
 
@@ -44,22 +45,33 @@ function Chat(){
                           Nice to see you, {username}. What's new?
                       </h1>
                   ) : (
-                      <div>
+                      <div className="sampleConversation">
                           <div className="userDiv">
                               {/* <strong>You</strong> */}
-                              <p className="userMsg">Explain JWT authentication in simple terms.</p>
+                              <p className="userMsg">Hi! What is OmniChatAI?</p>
                           </div>
 
                           <div className="gptDiv">
                               {/* <strong>OmniChatAI</strong> */}
                               <p className="gptMsg">
-                                  JWT (JSON Web Token) is like a digital entry pass.
-                                  After you log in, the server issues a token that
-                                  your app sends with future requests to prove
-                                  you're authenticated.
+                                  Hello! OmniChatAI is a full-stack conversational assistant featuring multi-turn chat history, secure authentication, and real-time AI responses. 
                               </p>
-                              <small>Sample conversation · Illustrative response</small>
                           </div>
+
+                          <div className="userDiv">
+                              {/* <strong>You</strong> */}
+                              <p className="userMsg">How do I start chatting or create my own custom threads?</p>
+                          </div>
+
+                          <div className="gptDiv">
+                              {/* <strong>OmniChatAI</strong> */}
+                              <p className="gptMsg">
+                                You're currently viewing a preview mode! To unlock full chat capabilities, save your own history, and explore all features, simply{" "}<Link to="/login"><b>Log In</b></Link> or{" "}<Link to="/signup"><b>Sign Up</b></Link>.
+                              </p>
+                          </div>
+                          {/* <p className="info">
+                            Sample conversation · Illustrative response
+                          </p> */}
                       </div>
                   )
               )}
