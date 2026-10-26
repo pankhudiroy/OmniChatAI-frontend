@@ -28,7 +28,8 @@ function Chat(){
           setLatestReply(content.slice(0, idx+1).join(" "));
 
           idx++;
-          if( idx>=interval.length) clearInterval(interval);
+          // if( idx>=interval.length) clearInterval(interval);
+          if( idx>=content.length) clearInterval(interval);
         }, 40);
 
         return() => clearInterval(interval);
@@ -38,10 +39,30 @@ function Chat(){
     return(
         <>
             {newChat && reply === null && (
-                <h1 className="startNewChath1">
-                    {isLoggedIn && username ? `Nice to see you, ${username}. What's new?`: "Start a New Chat!"}
-                </h1>
-            )}
+                  isLoggedIn && username ? (
+                      <h1 className="startNewChath1">
+                          Nice to see you, {username}. What's new?
+                      </h1>
+                  ) : (
+                      <div className="sampleConversation">
+                          <div className="sampleUser">
+                              <strong>You</strong>
+                              <p>Explain JWT authentication in simple terms.</p>
+                          </div>
+
+                          <div className="sampleAssistant">
+                              <strong>OmniChatAI</strong>
+                              <p>
+                                  JWT (JSON Web Token) is like a digital entry pass.
+                                  After you log in, the server issues a token that
+                                  your app sends with future requests to prove
+                                  you're authenticated.
+                              </p>
+                              <small>Sample conversation · Illustrative response</small>
+                          </div>
+                      </div>
+                  )
+              )}
             <div className="chats">
               {/* dynamic data */}
               {

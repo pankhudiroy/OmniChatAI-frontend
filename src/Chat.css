@@ -100,3 +100,31 @@ code{
     }
 
 }
+
+
+/* sample convo  */
+.sampleConversation {
+    width: min(720px, 85%);
+    margin: 40px auto;
+    color: #ececec;
+    line-height: 1.7;
+}
+
+.sampleUser,
+.sampleAssistant {
+    margin-bottom: 28px;
+}
+
+.sampleConversation strong {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.sampleConversation p {
+    margin: 0 0 10px;
+}
+
+.sampleConversation small {
+    color: #888;
+    font-size: 12px;
+}
