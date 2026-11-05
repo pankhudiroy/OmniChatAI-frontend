@@ -47,10 +47,13 @@ function App() {
           <Route
             path='/'
             element = {
-              <div className='app'>
-                <Sidebar
+              <div className={`app ${isLoggedIn ? "loggedIn" : "loggedOut"}`}>
+                {/* <Sidebar
                   sidebarOpen={sidebarOpen}
-                />
+                /> */}
+                {isLoggedIn && <Sidebar
+                  sidebarOpen={sidebarOpen}
+                /> }
 
                 <ChatWindow
                   sidebarOpen={sidebarOpen}

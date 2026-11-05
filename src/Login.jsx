@@ -4,9 +4,14 @@ import {useContext, useState, useEffect} from "react";
 import MyContext from "./MyContext.jsx";
 
 export default function Login (){
+    const DEMO_EMAIL = "demo@omnichatai.com";
+    const DEMO_PASSWORD = "password123";
+
+    const [email, setEmail] = useState(DEMO_EMAIL);
+    const [password, setPassword] = useState(DEMO_PASSWORD);
     const navigate = useNavigate();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    // const [email, setEmail] = useState("");
+    // const [password, setPassword] = useState("");
     const { setIsLoggedIn, setUsername } = useContext(MyContext);
 
     const handleSignup = () => {
@@ -109,6 +114,25 @@ export default function Login (){
                     Test Protected Route
                 </button> */}
                 <p>New User? <a className="signupBtn" onClick={handleSignup}><b>Sign Up</b></a> </p>
+            </div>
+
+            <div className="demoCredentials">
+                <h4>Demo Account</h4>
+
+                <div>
+                    <span>Email: {DEMO_EMAIL}</span>
+                    {/* <code>{DEMO_EMAIL}</code> */}
+                </div>
+
+                <div>
+                    {/* <span>Password:</span>
+                    <code>{DEMO_PASSWORD}</code> */}
+                    <span>Password: {DEMO_PASSWORD}</span>
+                </div>
+
+                {/* <p className="demoNote">
+                    Use these credentials to explore the application.
+                </p> */}
             </div>
         </div>
     );

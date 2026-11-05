@@ -38,45 +38,40 @@ function Chat(){
     }, [prevChats, reply])
 
     return(
-        <>
-            {newChat && reply === null && (
-                  isLoggedIn && username ? (
-                      <h1 className="startNewChath1">
-                          Nice to see you, {username}. What's new?
-                      </h1>
-                  ) : (
-                      <div className="sampleConversation">
-                          <div className="userDiv">
-                              {/* <strong>You</strong> */}
-                              <p className="userMsg">Hi! What is OmniChatAI?</p>
-                          </div>
-
-                          <div className="gptDiv">
-                              {/* <strong>OmniChatAI</strong> */}
-                              <p className="gptMsg">
-                                  Hello! OmniChatAI is a full-stack conversational assistant featuring multi-turn chat history, secure authentication, and real-time AI responses. 
-                              </p>
-                          </div>
-
-                          <div className="userDiv">
-                              {/* <strong>You</strong> */}
-                              <p className="userMsg">How do I start chatting or create my own custom threads?</p>
-                          </div>
-
-                          <div className="gptDiv">
-                              {/* <strong>OmniChatAI</strong> */}
-                              <p className="gptMsg">
-                                You're currently viewing a preview mode! To unlock full chat capabilities, save your own history, and explore all features, simply{" "}<Link to="/login"><b>Log In</b></Link> or{" "}<Link to="/signup"><b>Sign Up</b></Link>.
-                              </p>
-                          </div>
-                          {/* <p className="info">
-                            Sample conversation · Illustrative response
-                          </p> */}
-                      </div>
-                  )
+        <div className="chats">
+            {isLoggedIn && newChat && reply === null && (
+                  <h1 className="startNewChath1">
+                      Nice to see you, {username}. What's new?
+                  </h1>
               )}
-            <div className="chats">
-              {/* dynamic data */}
+
+            {!isLoggedIn && (
+                      <div className="landingContent">
+                        <h1>Meet OmniChatAI</h1>
+
+                        <p>
+                            Your AI-powered conversational assistant.
+                            Ask questions, explore ideas, and get intelligent responses.
+                        </p>
+
+                        <div className="landingFeatures">
+                            <span>Multi-turn Conversations</span>
+                            <span>Chat History</span>
+                            <span>JWT Authentication</span>
+                        </div>
+
+                        <div className="demoInfo">
+                            <h3>Explore OmniChatAI</h3>
+                            <p>
+                                Want to try the application?
+                                Use our pre-filled demo account to get started instantly.
+                            </p>
+                            <Link to="/login">Try Demo Account →</Link>
+                        </div>
+
+                    </div>
+              )}
+            {/* dynamic data */}
               {
                 prevChats?.slice(0, -1).map((chat,idx) =>
                   <div className = {chat.role === "user"? "userDiv" : "gptDiv"} key={idx}>
@@ -100,8 +95,7 @@ function Chat(){
                   </>
                 )
               }
-            </div>
-        </>
+        </div>
     )
 };
 

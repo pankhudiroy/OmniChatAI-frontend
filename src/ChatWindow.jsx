@@ -11,6 +11,7 @@ function ChatWindow(){
       reply, setReply,
       currentThreadId,
       prevChats, setPrevChats,
+      newChat, setNewChat,
       sidebarOpen, setSidebarOpen,
       allThreads, setAllThreads,
       isLoggedIn, setIsLoggedIn
@@ -98,6 +99,7 @@ function ChatWindow(){
          setPrevChats([]);
          setReply(null);
          setPrompt("");
+         setNewChat(true);
 
          alert("You have been logged out successfully!");
          navigate("/");
@@ -109,6 +111,10 @@ function ChatWindow(){
              <div className="hamburger" onClick={() => setSidebarOpen(true)}>
                 <i className="fa-solid fa-bars"></i>
              </div>
+             {/* <i
+               className="fa-solid fa-bars"
+               onClick={() => setSidebarOpen(true)}
+            ></i> */}
              <span>OmniChatAI<i className="fa-solid fa-angle-down"></i></span>
              <div className="userIconDiv" onClick={handleProfileClick}>
                  <span className="userIcon"><i className="fa-solid fa-user"></i></span>
@@ -140,28 +146,28 @@ function ChatWindow(){
           <PulseLoader color="#fff" loading={loading} />
 
           <div className="chatInput">
-            <div className="inputBox">
-               <div id="query">
-                  <textarea placeholder="Ask anything" 
-                     value={prompt}
-                     onChange={(e) => setPrompt(e.target.value)}
-                     onKeyDown={(e) => {
-                        if (e.key === "Enter" && !e.shiftKey) {
-                           e.preventDefault();
-                           getReply();
-                        }
-                     }}
-                   >
-                  </textarea>
-               </div>
-               {/* {isLoggedIn ? */}
-                  <div id="submit" onClick={getReply} >
-                     <i className="fa-solid fa-circle-arrow-up"></i>
+               <div className="inputBox">
+                  <div id="query">
+                     <textarea placeholder="Ask anything" 
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
+                        onKeyDown={(e) => {
+                           if (e.key === "Enter" && !e.shiftKey) {
+                              e.preventDefault();
+                              getReply();
+                           }
+                        }}
+                     >
+                     </textarea>
                   </div>
-            </div>
-            <p className="info">
-               OmniChatAI can make mistakes. Check important info.
-            </p>
+                  {/* {isLoggedIn ? */}
+                     <div id="submit" onClick={getReply} >
+                        <i className="fa-solid fa-circle-arrow-up"></i>
+                     </div>
+               </div>
+               <p className="info">
+                  OmniChatAI can make mistakes. Check important info.
+               </p>
           </div>
         </div>
     )

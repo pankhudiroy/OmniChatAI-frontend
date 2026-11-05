@@ -5,7 +5,7 @@ import { v4 as uuidv4 } from 'uuid';
 import blacklogo from "./assets/blacklogo.png";
 
 function Sidebar(){
-    const {allThreads, setAllThreads, currentThreadId, setNewChat, setReply, setPrompt, setcurrentThreadId, setPrevChats, sidebarOpen, setSidebarOpen} = useContext(MyContext);
+    const {allThreads, setAllThreads, currentThreadId, setNewChat, setReply, setPrompt, setcurrentThreadId, setPrevChats, sidebarOpen, setSidebarOpen, isLoggedIn} = useContext(MyContext);
     // const [option, setOption] = useState(true);
     const [openThreadId, setOpenThreadId] = useState(null); 
     const [editingThreadId, setEditingThreadId] = useState(null);
@@ -147,67 +147,27 @@ function Sidebar(){
 //     
         <section className={`sidebar ${sidebarOpen ? "open" : ""}`}>
             {/* New chat button */}
-            <button onClick={createNewChat}>
-                <img src={blacklogo} alt="GPT logo" className="logo" ></img>
-                {/* <p>OmniChatAI</p> */}
-                <span><i className="fa-regular fa-pen-to-square">New Chat</i></span>
+            <div className="sidebar-header">
+                <img src={blacklogo} alt="GPT logo" className="logo" />
 
-        
-
-               <i className="fa-solid fa-xmark mobileToggle" onClick={(e) => {
-                    e.stopPropagation();
-                    setSidebarOpen(false);
-                    }}
-              ></i>
+                <i
+                    className="fa-solid fa-xmark mobileToggle"
+                    onClick={() => setSidebarOpen(false)}
+                ></i>
+            </div>
+            <button className="newChat" onClick={createNewChat}>
+                <p><i className="fa-regular fa-pen-to-square"></i> New Chat</p>
             </button>
-
 
 
             {/* { allThreads && <h3>Recents</h3>} */}
 
             {/* Hitsory */}
+            {/* <p><i className="fa-regular fa-pen-to-square"></i> New Chat</p> */}
             <ul className="history">
                 { allThreads && <h4>Recents</h4>}
                 {
                     allThreads?.map((thread, idx) =>(
-                        // <li key={idx}  
-                        //     onClick={(e) => changeThread(thread.threadId)}
-                        //     className={thread.threadId === currentThreadId ? "highlighted" : ""}
-                        // >
-                        //     <div className="thread-title">
-                        //         {thread.title}
-                        //     </div>
-                        //     <i className="fa-solid fa-ellipsis" 
-                        //        onClick={(e) =>{
-                        //          e.stopPropagation();
-                        //          console.log("clicked");
-                        //         //  setOption(true);
-                        //          setOpenThreadId(openThreadId === thread.threadId ? null : thread.threadId);
-                        //        }}>
-                        //     </i>
-                        //     { openThreadId === thread.threadId && (
-                        //         <div className="options">
-                        //             <i className="fa-regular fa-pen-to-square" 
-                        //               onClick={(e) =>{
-                        //                 e.stopPropagation();
-                        //                 renameThread(thread.threadId);
-                        //                }}
-                        //             >
-                        //                 &nbsp; 
-                        //                 Rename
-                        //             </i>
-                        //             <i className="fa-regular fa-trash-can"
-                        //                 onClick={(e) =>{
-                        //                     e.stopPropagation();
-                        //                     deleteThread(thread.threadId);
-                        //                 }}
-                        //             >
-                        //                 &nbsp; 
-                        //                 Delete
-                        //             </i>
-                        //         </div>
-                        //     )}
-                        // </li>
                         <li key={idx} className={thread.threadId === currentThreadId ? "highlighted" : ""}  onClick={(e) => changeThread(thread.threadId)}>
                             {editingThreadId === thread.threadId ? (
                                 <input
@@ -235,26 +195,26 @@ function Sidebar(){
 
                             {openThreadId === thread.threadId && (
                                 <div className="options">
-                                <i
-                                    className="fa-regular fa-pen-to-square"
-                                    onClick={(e) => {
-                                    e.stopPropagation();
-                                    setEditingThreadId(thread.threadId);
-                                    setEditingTitle(thread.title);
-                                    setOpenThreadId(null); // close dropdown
-                                    }}
-                                >
-                                    Rename
-                                </i>
-                                <i
-                                    className="fa-regular fa-trash-can"
-                                    onClick={(e) => {
-                                    e.stopPropagation();
-                                    deleteThread(thread.threadId);
-                                    }}
-                                >
-                                    Delete
-                                </i>
+                                    <i
+                                        className="fa-regular fa-pen-to-square"
+                                        onClick={(e) => {
+                                        e.stopPropagation();
+                                        setEditingThreadId(thread.threadId);
+                                        setEditingTitle(thread.title);
+                                        setOpenThreadId(null); // close dropdown
+                                        }}
+                                    >
+                                        Rename
+                                    </i>
+                                    <i
+                                        className="fa-regular fa-trash-can"
+                                        onClick={(e) => {
+                                        e.stopPropagation();
+                                        deleteThread(thread.threadId);
+                                        }}
+                                    >
+                                        Delete
+                                    </i>
                                 </div>
                             )}
                         </li>

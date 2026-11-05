@@ -1,0 +1,90 @@
+:root {
+  /* Surfaces */
+  --bg-main: #1a1a1a;
+  --bg-panel: #171717;
+  --bg-sidebar: #111111;
+  --bg-elevated: #242424;
+  --bg-input: #2b2b2b;
+  --bg-hover: #2a2a2a;
+  --bubble-user: #303030;
+
+  /* Lines */
+  --border-subtle: #2c2c2c;
+  --border-strong: #3f3f3f;
+
+  /* Text */
+  --text-primary: #f3f3f3;
+  --text-secondary: #b3b3b3;
+  --text-muted: #808080;
+
+  /* Layout */
+  --sidebar-width: 280px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --transition: 0.2s ease;
+  --font-sans: "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.5;
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  overflow: hidden;
+}
+
+#root {
+  height: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+/* Consistent thin scrollbars everywhere */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3a3a3a transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #3a3a3a;
+  border-radius: 4px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: #4d4d4d;
+}
